@@ -1,7 +1,14 @@
 <div class="grid">
   <div class="col-12">
-    <div class="card px-6 py-6">
+    <div class="card px-3 py-3 md:px-6 md:py-6">
       <p-toast></p-toast>
+
+      <p-toolbar styleClass="mb-4 ">
+        <ng-template pTemplate="left">
+            <h5 class="m-0 my-2">Manage Customers</h5>
+        </ng-template>
+
+    </p-toolbar>
       <p-table
         #dt
         [value]="customers"
@@ -25,7 +32,7 @@
           <div
             class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
           >
-            <h5 class="m-0">Manage Customers</h5>
+            
 
             <span class="block  ml-auto">
               <div class="">

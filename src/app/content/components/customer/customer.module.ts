@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerComponent } from './customer.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
@@ -33,6 +33,7 @@ import { CustomerNewComponent } from './customer-new/customer-new.component';
     TableModule,
     FileUploadModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     RippleModule,
     ToastModule,

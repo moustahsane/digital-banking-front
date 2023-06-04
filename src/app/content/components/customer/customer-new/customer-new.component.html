@@ -1,15 +1,49 @@
 <div class="grid">
-    <div class="col-12">
-      <div class="card px-6 py-6">
-        <p-toast></p-toast>
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-toast></p-toast>
 
-        <p-toolbar styleClass="mb-4 ">
-            <ng-template pTemplate="left">
-                <h5 class="m-0 my-2">New Customer</h5>
-            </ng-template>
+      <p-toolbar styleClass="mb-4 ">
+        <ng-template pTemplate="left">
+          <h5 class="m-0 my-2">New Customer</h5>
+        </ng-template>
+      </p-toolbar>
 
-        </p-toolbar>
-        
-      </div>
+      <form
+        class="col-12 md:col-6 px-0"
+        [formGroup]="customerForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="card p-fluid">
+          <h5>Customer</h5>
+          <div class="field">
+            <label htmlFor="name1">Name</label>
+            <input formControlName="name" pInputText id="name1" type="text" />
+            <span
+              *ngIf="getInputError('name')"
+              [ngStyle]="{ color: 'var(--red-600)' }"
+            >
+              {{ getInputError("name") }}
+            </span>
+          </div>
+          <div class="field">
+            <label htmlFor="email1">Email</label>
+            <input formControlName="email" pInputText id="email" type="text" />
+            <span
+            *ngIf="getInputError('email')"
+            [ngStyle]="{ color: 'var(--red-600)' }"
+          >
+            {{ getInputError("email") }}
+          </span>
+          </div>
+
+          <button [loading]="submitLoading"
+            [disabled]="!customerForm.valid"
+            pButton
+            label="Submit"
+          ></button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
