@@ -1,0 +1,1 @@
+export type AccountStatus = "CREATED" | "ACTIVATED" | "SUSPENDED"
