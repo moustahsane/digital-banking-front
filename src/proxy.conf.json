@@ -1,0 +1,10 @@
+{
+  "/customers": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+  "/accounts": {
+    "target": "http://localhost:8080",
+    "secure": false
+  }
+}
