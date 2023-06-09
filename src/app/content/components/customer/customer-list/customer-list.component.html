@@ -9,16 +9,19 @@
         </ng-template>
 
     </p-toolbar>
-      <p-table
+      <p-table styleClass="p-datatable-gridlines p-datatable-striped"
         #dt
         [value]="customers"
         [columns]="cols"
+        [frozenColumns]="colsFreez"
         responsiveLayout="scroll"
         [rows]="10"
         [globalFilterFields]="[
           'name',
           'email'
         ]"
+        [scrollable]="true"
+        [resizableColumns]="true"
         [paginator]="true"
         [rowsPerPageOptions]="[10, 20, 30]"
         [showCurrentPageReport]="true"
@@ -32,7 +35,7 @@
           <div
             class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
           >
-            
+
 
             <span class="block  ml-auto">
               <div class="">
@@ -69,40 +72,40 @@
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th style="width: 3rem">
-              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
-            <th pSortableColumn="code">
+
+            <th pResizableColumn pFrozenColumn style="width: 14%; min-width: 200px"  pSortableColumn="code">
               Code <p-sortIcon field="code"></p-sortIcon>
             </th>
-            <th pSortableColumn="name">
+            <th pResizableColumn style="width: 14%; min-width: 200px"  pSortableColumn="name">
               Name <p-sortIcon field="name"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="email">
+            <th pResizableColumn style="width: 14%; min-width: 200px"  pSortableColumn="email" >
               Email <p-sortIcon field="price"></p-sortIcon>
             </th>
 
-            <th></th>
+
+
+            <th style="width: 14%; min-width: 200px"> Actions</th>
+
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
           <tr>
-            <td>
-              <p-tableCheckbox [value]="customer"></p-tableCheckbox>
-            </td>
-            <td style="width: 14%; min-width: 10rem">
+
+            <td style="width: 14%; min-width: 200px" pFrozenColumn>
               <span class="p-column-title">Code</span>
               {{ customer.code || customer.id }}
             </td>
-            <td style="width: 14%; min-width: 10rem">
+            <td style="width: 14%; min-width: 200px">
               <span class="p-column-title">Name</span>
               {{ customer.name }}
             </td>
-            <td style="width: 14%; min-width: 10rem">
+            <td style="width: 14%; min-width: 200px">
               <span class="p-column-title">Email</span>
               {{ customer.email }}
             </td>
+
 
             <td>
               <div class="flex">

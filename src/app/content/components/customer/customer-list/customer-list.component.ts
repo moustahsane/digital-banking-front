@@ -26,6 +26,7 @@ export class CustomerListComponent implements OnInit {
   submitted: boolean = false;
 
   cols: any[] = [];
+  colsFreez: any[] = [];
 
   statuses: any[] = [];
 
@@ -43,6 +44,8 @@ export class CustomerListComponent implements OnInit {
       { field: 'name', header: 'Customer' },
       { field: 'email', header: 'Email' },
     ];
+    this.colsFreez = [
+      { field: 'id' }];
   }
 
   openNew() {

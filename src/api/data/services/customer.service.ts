@@ -8,15 +8,18 @@ import { Customer } from '../types/models/Customer';
 })
 export class CustomerService extends RestService {
 
-  
+
   constructor(http:HttpClient) {
-    
+
     super(http);
-    
+
   }
 
 
   getCustomers(){
     return this.http.get<Array<Customer>>(`${serverURL}/customers`)
+  }
+ addCustomer(customer:any){
+    return this.http.post<Customer>(`${serverURL}/customers`, customer)
   }
 }

@@ -5,6 +5,8 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+import { CustomerService } from 'src/api/data/services/customer.service';
 import { Customer } from 'src/api/data/types/models/Customer';
 
 @Component({
@@ -17,7 +19,7 @@ export class CustomerNewComponent implements OnInit {
   customerForm!: FormGroup;
   submitLoading = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private messageService  :MessageService,private customerService:CustomerService) {}
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
@@ -28,6 +30,16 @@ export class CustomerNewComponent implements OnInit {
 
   onSubmit() {
     this.submitLoading = true;
+
+  this.customerService.addCustomer(this.customerForm.value).subscribe({
+    next : res=>{
+
+      this.messageService.add({severity:'success', summary:'Customer added', detail:`${this.customerForm.value.name} added succesfully`});
+      this.submitLoading = false;
+
+
+    }
+  })
     setTimeout(() => {
       this.submitLoading = false;
     }, 1000);
