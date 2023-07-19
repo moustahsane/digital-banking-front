@@ -4,12 +4,24 @@ import {CustomersComponent} from "./customers/customers.component";
 import {AccountsComponent} from "./accounts/accounts.component";
 import {NewCustomerComponent} from "./new-customer/new-customer.component";
 import {CustomerAccountsComponent} from "./customer-accounts/customer-accounts.component";
+import { LoginComponent } from './login/login.component';
+import { AdminTemplateComponent } from './admin-template/admin-template.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { AuthorizationGuard } from './guards/authorization.guard';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
-const routes: Routes = [
-  { path :"customers", component : CustomersComponent},
-  { path :"accounts", component : AccountsComponent},
-  { path :"new-customer", component : NewCustomerComponent},
-  { path :"customer-accounts/:id", component : CustomerAccountsComponent},
+const routes: Routes = [  
+  { path :"", redirectTo:"/login",pathMatch:"full"},
+  { path :"login", component : LoginComponent},
+  { path :"admin", component : AdminTemplateComponent,children:[
+    { path :"", component : CustomersComponent},
+    { path :"customers", component : CustomersComponent},
+    { path :"accounts", component : AccountsComponent},
+    { path :"not-authorized", component :NotAuthorizedComponent},
+    { path :"new-customer", component : NewCustomerComponent,canActivate:[AuthorizationGuard],data:{role:"ADMIN"}},
+    { path :"customer-accounts/:id", component : CustomerAccountsComponent},
+  ],canActivate:[AuthenticationGuard] },
+
 ];
 
 @NgModule({
